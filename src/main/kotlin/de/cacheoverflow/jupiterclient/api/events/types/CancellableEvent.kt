@@ -1,6 +1,6 @@
 package de.cacheoverflow.jupiterclient.api.events.types
 
-class CancellableEvent: ICancellable {
+open class CancellableEvent: ICancellable {
 
     private var cancelled: Boolean = false
 

@@ -4,7 +4,8 @@
   "package": "de.cacheoverflow.jupiterclient.injections.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "client.MinecraftClientMixin"
+    "client.MinecraftClientMixin",
+    "client.gui.screen.ScreenMixin"
   ],
   "client": [
   ],
