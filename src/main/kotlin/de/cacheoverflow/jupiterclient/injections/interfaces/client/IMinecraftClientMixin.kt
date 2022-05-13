@@ -1,9 +1,8 @@
-package de.cacheoverflow.jupiterclient.injections.interfaces.client;
+package de.cacheoverflow.jupiterclient.injections.interfaces.client
 
-import de.cacheoverflow.jupiterclient.JupiterClient;
-import org.jetbrains.annotations.NotNull;
+import de.cacheoverflow.jupiterclient.JupiterClient
 
-public interface IMinecraftClientMixin {
+interface IMinecraftClientMixin {
 
     /**
      * This method returns the instance of the client for the minecraft instance.
@@ -13,6 +12,6 @@ public interface IMinecraftClientMixin {
      * @author Cach30verfl0w, Cedric H.
      * @since  1.0.0
      */
-    @NotNull JupiterClient getJupiterClient();
+    val jupiterClient: JupiterClient
 
 }

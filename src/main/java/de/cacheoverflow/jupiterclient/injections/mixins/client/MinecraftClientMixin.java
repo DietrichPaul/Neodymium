@@ -3,8 +3,10 @@ package de.cacheoverflow.jupiterclient.injections.mixins.client;
 import com.mojang.authlib.minecraft.UserApiService;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import de.cacheoverflow.jupiterclient.JupiterClient;
+import de.cacheoverflow.jupiterclient.injections.interfaces.client.IMinecraftClientMixin;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.RunArgs;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MinecraftClient.class)
-public abstract class MinecraftClientMixin {
+public abstract class MinecraftClientMixin implements IMinecraftClientMixin {
 
     @Shadow @Final private static Logger LOGGER;
     @Unique private JupiterClient jupiterClient;
@@ -111,6 +113,18 @@ public abstract class MinecraftClientMixin {
     public void injectCreateUserApiServiceBeforeException(YggdrasilAuthenticationService authService, RunArgs runArgs, CallbackInfoReturnable<UserApiService> callback) {
         LOGGER.warn("Can't authenticate account. Switch to offline authentication...");
         callback.setReturnValue(UserApiService.OFFLINE);
+    }
+
+    /**
+     * This method makes the minecraft client able to return the jupiter client by the minecraft instance.
+     *
+     * @return The jupiter client instance in this class.
+     *
+     * @author Cach30verfl0w, Cedric H.
+     */
+    @Override
+    public @NotNull JupiterClient getJupiterClient() {
+        return this.jupiterClient;
     }
 
 }
