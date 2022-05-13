@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "de.cacheoverflow.jupiterclient.injections.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "client.MinecraftClientMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

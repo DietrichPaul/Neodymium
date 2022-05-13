@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "jupiter-client",
+  "version": "${version}",
+
+  "name": "Jupiter Client",
+  "description": "Fabric modification for the sandbox game Minecraft",
+  "authors": [
+    {
+      "name": "Cach30verfl0w",
+      "contact": {
+        "email": "contact@cach30verfl0w.dev",
+        "homepage": "https://cach30verfl0w.dev"
+      }
+    }
+  ],
+  "contact": {
+    "sources": "https://github.com/JupiterClient",
+    "issues": "https://github.com/JupiterClient/issues"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/jupiterclient/icon.png",
+
+  "environment": "client",
+  "entrypoints": {
+  },
+  "mixins": [
+    "jupiter.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "minecraft": "~1.18.2",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
