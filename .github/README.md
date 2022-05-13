@@ -11,7 +11,7 @@ You can find all instructions for the setup on the [Fabric Wiki Page](https://fa
 
 ## Libraries etc.
 
-| Name | Author | Usage | License | Version |
+| Name | Usage | Author | License | Version |
 |------|--------|-------|---------|---------|
 | [Yarn Mappings](https://github.com/FabricMC/yarn) | Fabric Base | [FabricMC](https://github.com/FabricMC) | [CC0-1.0](https://github.com/FabricMC/yarn/blob/22w19a/LICENSE) | 1.18.2+build.1 |
 | [Fabric Loader](https://github.com/FabricMC/fabric-loader) | Fabric Base | [FabricMC](https://github.com/FabricMC) | [Apache 2.0](https://github.com/FabricMC/fabric-loader/blob/master/LICENSE) | 0.13.3 |
