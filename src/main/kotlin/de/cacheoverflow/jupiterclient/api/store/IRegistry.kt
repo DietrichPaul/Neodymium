@@ -1,4 +1,4 @@
-package de.cacheoverflow.jupiterclient.store
+package de.cacheoverflow.jupiterclient.api.store
 
 import de.cacheoverflow.jupiterclient.utils.ICopyable
 import java.util.function.Function

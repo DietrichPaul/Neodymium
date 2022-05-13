@@ -1,4 +1,4 @@
-package de.cacheoverflow.jupiterclient.store
+package de.cacheoverflow.jupiterclient.api.store
 
 import net.minecraft.util.StringIdentifiable
 import java.util.function.Predicate
