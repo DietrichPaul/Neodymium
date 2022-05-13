@@ -2,6 +2,8 @@ package de.cacheoverflow.jupiterclient
 
 import com.google.common.base.Preconditions
 import com.mojang.logging.LogUtils
+import de.cacheoverflow.jupiterclient.api.events.IEventBus
+import de.cacheoverflow.jupiterclient.impl.events.DefaultEventBus
 import de.cacheoverflow.jupiterclient.injections.interfaces.client.IMinecraftClientMixin
 import net.fabricmc.loader.api.FabricLoader
 import net.fabricmc.loader.api.metadata.ModMetadata
@@ -11,10 +13,11 @@ import org.slf4j.Logger
 class JupiterClient {
 
     val metadata: ModMetadata = FabricLoader.getInstance().getModContainer("jupiter-client").orElseThrow().metadata
+    val eventBus: IEventBus = DefaultEventBus()
     val logger: Logger = LogUtils.getLogger()
 
     companion object {
-        fun getInstanceFrom(client: MinecraftClient): JupiterClient {
+        @JvmStatic fun getInstanceFrom(client: MinecraftClient): JupiterClient {
             Preconditions.checkNotNull(client, "The client can't be null!")
             return (client as IMinecraftClientMixin).jupiterClient
         }
@@ -22,6 +25,7 @@ class JupiterClient {
 
     fun start() {
         logger.info("Starting {} v{}...", metadata.name, metadata.version)
+
         logger.info("{} is now initialized.", metadata.name)
     }
 
