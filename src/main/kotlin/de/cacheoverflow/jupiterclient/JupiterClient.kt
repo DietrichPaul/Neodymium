@@ -1,44 +1,33 @@
-package de.cacheoverflow.jupiterclient;
+package de.cacheoverflow.jupiterclient
 
-import com.google.common.base.Preconditions;
-import com.mojang.logging.LogUtils;
-import de.cacheoverflow.jupiterclient.injections.interfaces.client.IMinecraftClientMixin;
-import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.metadata.ModMetadata;
-import net.minecraft.client.MinecraftClient;
-import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
+import com.google.common.base.Preconditions
+import com.mojang.logging.LogUtils
+import de.cacheoverflow.jupiterclient.injections.interfaces.client.IMinecraftClientMixin
+import net.fabricmc.loader.api.FabricLoader
+import net.fabricmc.loader.api.metadata.ModMetadata
+import net.minecraft.client.MinecraftClient
+import org.slf4j.Logger
 
-public class JupiterClient {
+class JupiterClient {
 
-    private final Logger logger = LogUtils.getLogger();
-    private final ModMetadata metadata;
+    val metadata: ModMetadata = FabricLoader.getInstance().getModContainer("jupiter-client").orElseThrow().metadata
+    val logger: Logger = LogUtils.getLogger()
 
-    public JupiterClient() {
-        this.metadata = FabricLoader.getInstance().getModContainer("jupiter-client").orElseThrow().getMetadata();
+    companion object {
+        fun getInstanceFrom(client: MinecraftClient): JupiterClient {
+            Preconditions.checkNotNull(client, "The client can't be null!")
+            return (client as IMinecraftClientMixin).jupiterClient
+        }
     }
 
-    public void start() {
-        this.logger.info("Starting {} v{}...", this.metadata.getName(), this.metadata.getVersion());
-        this.logger.info("{} is now initialized.", this.metadata.getName());
+    fun start() {
+        logger.info("Starting {} v{}...", metadata.name, metadata.version)
+        logger.info("{} is now initialized.", metadata.name)
     }
 
-    public void stop() {
-        this.logger.info("Stopping {} v{}...", this.metadata.getName(), this.metadata.getVersion());
-        this.logger.info("{} is now stopped.", this.metadata.getName());
-    }
-
-    public static @NotNull JupiterClient getInstanceFrom(@NotNull final MinecraftClient client) {
-        Preconditions.checkNotNull(client, "The client can't be null!");
-        return ((IMinecraftClientMixin) client).getJupiterClient();
-    }
-
-    public @NotNull ModMetadata getMetadata() {
-        return metadata;
-    }
-
-    public @NotNull Logger getLogger() {
-        return logger;
+    fun stop() {
+        logger.info("Stopping {} v{}...", metadata.name, metadata.version)
+        logger.info("{} is now stopped.", metadata.name)
     }
 
 }
