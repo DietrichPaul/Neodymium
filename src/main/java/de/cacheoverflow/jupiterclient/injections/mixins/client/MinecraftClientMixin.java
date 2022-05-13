@@ -8,7 +8,6 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.SharedConstants;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.RunArgs;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ServerInfo;
 import net.minecraft.client.resource.language.I18n;
@@ -37,7 +36,6 @@ public abstract class MinecraftClientMixin implements IMinecraftClientMixin {
     @Shadow public abstract boolean isConnectedToRealms();
 
     @Shadow @Nullable private ServerInfo currentServerEntry;
-    @Shadow @Nullable public Screen currentScreen;
     @Unique private JupiterClient jupiterClient;
 
     /**
