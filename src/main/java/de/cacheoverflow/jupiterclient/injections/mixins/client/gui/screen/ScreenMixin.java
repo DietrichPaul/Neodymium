@@ -17,8 +17,14 @@ public abstract class ScreenMixin extends DrawableHelper {
     @Shadow @Nullable protected MinecraftClient client;
 
     /**
+     * Rewrite the {@link Screen#sendMessage(String)} method in the {@link Screen} class to hook the event into the
+     * chat message send-operation.
+     *
      * @reason Inject the chat event for message processing
      * @author Mojang Studios, Cach30verfl0w
+     *
+     * @see    de.cacheoverflow.jupiterclient.api.events.IEventBus
+     * @see    ChatEvent
      */
     @Overwrite
     public void sendMessage(@NotNull final String message, final boolean toHud) {

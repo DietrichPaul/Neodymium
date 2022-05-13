@@ -21,6 +21,18 @@ public abstract class MinecraftClientMixin {
     @Shadow @Final private static Logger LOGGER;
     @Unique private JupiterClient jupiterClient;
 
+    /**
+     * Inject into the constructor at {@link net.minecraft.util.thread.ReentrantThreadExecutor#ReentrantThreadExecutor(String)}
+     * in the {@link MinecraftClient} class, to initialize the client.
+     *
+     * @author         Cach30verfl0w
+     * @reason         Make the client able to initialize
+     *
+     * @param args     The arguments of minecraft
+     * @param callback The callback of the mixin
+     *
+     * @see JupiterClient
+     */
     @Inject(
             method = "<init>",
             at = @At(
@@ -33,6 +45,18 @@ public abstract class MinecraftClientMixin {
         this.jupiterClient = new JupiterClient();
     }
 
+    /**
+     * Inject into the constructor at {@link net.minecraft.client.util.Window#setFramerateLimit} in the
+     * {@link MinecraftClient} class, to make the client able to start.
+     *
+     * @author         Cach30verfl0w
+     * @reason         Make the client able to start
+     *
+     * @param args     The arguments of minecraft
+     * @param callback The callback of the mixin
+     *
+     * @see            JupiterClient
+     */
     @Inject(
             method = "<init>",
             at = @At(
@@ -45,6 +69,17 @@ public abstract class MinecraftClientMixin {
         this.jupiterClient.start();
     }
 
+    /**
+     * Inject into the {@link MinecraftClient#stop} method at the head of the method in the {@link MinecraftClient}
+     * class, to make the client able to stop.
+     *
+     * @author         Cach30verfl0w
+     * @reason         Make the client able to stop
+     *
+     * @param callback The callback of the mixin
+     *
+     * @see            JupiterClient
+     */
     @Inject(
             method = "stop",
             at = @At("HEAD")
@@ -53,6 +88,17 @@ public abstract class MinecraftClientMixin {
         this.jupiterClient.stop();
     }
 
+    /**
+     * Inject into the createUserApiService method at {@link Logger#error(String, Throwable)} in the
+     * {@link MinecraftClient} class, to remove the exception and print a message.
+     *
+     * @author         Cach30verfl0w
+     * @reason         Remove the exception, if you start minecraft in the IDE etc.
+     *
+     * @param callback The callback of the mixin
+     *
+     * @see Logger#warn(String)
+     */
     @Inject(
             method = "createUserApiService",
             at = @At(
