@@ -33,4 +33,12 @@ public class JupiterClient {
         return ((IMinecraftClientMixin) client).getJupiterClient();
     }
 
+    public @NotNull ModMetadata getMetadata() {
+        return metadata;
+    }
+
+    public @NotNull Logger getLogger() {
+        return logger;
+    }
+
 }
