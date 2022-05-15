@@ -1,4 +1,4 @@
-package de.cacheoverflow.jupiterclient.utils
+package de.cacheoverflow.jupiterclient.api.utils
 
 /**
  * This interface implements the functionality to clone the own class.

@@ -3,11 +3,13 @@ package de.cacheoverflow.jupiterclient.injections.mixins.client;
 import com.mojang.authlib.minecraft.UserApiService;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import de.cacheoverflow.jupiterclient.JupiterClient;
+import de.cacheoverflow.jupiterclient.api.events.all.ScreenEvent;
 import de.cacheoverflow.jupiterclient.injections.interfaces.client.IMinecraftClientMixin;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.SharedConstants;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.RunArgs;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ServerInfo;
 import net.minecraft.client.resource.language.I18n;
@@ -21,6 +23,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -36,6 +39,7 @@ public abstract class MinecraftClientMixin implements IMinecraftClientMixin {
     @Shadow public abstract boolean isConnectedToRealms();
 
     @Shadow @Nullable private ServerInfo currentServerEntry;
+    @Shadow @Nullable public Screen currentScreen;
     @Unique private JupiterClient jupiterClient;
 
     /**
@@ -59,7 +63,7 @@ public abstract class MinecraftClientMixin implements IMinecraftClientMixin {
             )
     )
     public void injectConstructorAfterSuper(RunArgs args, CallbackInfo callback) {
-        this.jupiterClient = new JupiterClient();
+        this.jupiterClient = new JupiterClient(MinecraftClient.class.cast(this));
     }
 
     /**
@@ -103,6 +107,20 @@ public abstract class MinecraftClientMixin implements IMinecraftClientMixin {
     )
     public void injectStopOnHead(CallbackInfo callback) {
         this.jupiterClient.stop();
+    }
+
+    /**
+     * Hook into the {@link MinecraftClient#setScreen} method to manipulate the screen argument with the ScreenEvent.
+     *
+     * @param screen The screen parameter.
+     * @return       The new screen parameter.
+     *
+     * @see          ScreenEvent
+     * @see          de.cacheoverflow.jupiterclient.api.events.IEventBus
+     */
+    @ModifyVariable(method = "setScreen", at = @At(value = "HEAD"), argsOnly = true)
+    public Screen hookSetScreen(Screen screen) {
+        return this.jupiterClient.getEventBus().callEvent(new ScreenEvent(this.currentScreen, screen)).getScreen();
     }
 
     /**
