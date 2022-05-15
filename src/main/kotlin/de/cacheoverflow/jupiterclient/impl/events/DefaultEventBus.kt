@@ -52,7 +52,6 @@ class DefaultEventBus(
         }
 
         this.eventListener = ArrayList(this.eventListener.sortedWith(compareBy { it.priority() })) // I don't have a better idea ._.
-        println(this.eventListener)
     }
 
     override fun <T : Any> callEvent(event: T, predicate: Predicate<IEventContainer>): T {
