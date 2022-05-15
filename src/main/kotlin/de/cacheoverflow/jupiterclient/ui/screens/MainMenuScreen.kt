@@ -190,7 +190,7 @@ class MainMenuScreen : ScreenFacade("narrator.screen.title") {
         drawTexture(matrices, 1, 5, 0f, 0f, height, height, height, height)
         matrices.push()
         matrices.scale(1.9f, 1.9f, 1.9f)
-        textRenderer.draw(matrices, Text.of("ElectronMod"), 16f, 5f, Color.WHITE.rgb)
+        textRenderer.draw(matrices, Text.of("Jupiter Mod"), 16f, 5f, Color.WHITE.rgb)
         matrices.pop()
         super.render(matrices, mouseX, mouseY, delta)
     }
