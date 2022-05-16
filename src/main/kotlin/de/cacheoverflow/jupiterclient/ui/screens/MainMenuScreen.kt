@@ -35,8 +35,8 @@ class MainMenuScreen(
     private var editButton: ButtonWidget? = null
 
     override fun init() {
-        if (this.prevScreen == null)
-            this.prevScreen?.let { this.setEscapeScreen(it) }
+        if (this.prevScreen != null)
+            this.prevScreen.let { this.setEscapeScreen(it) }
         multiplayerScreen.init(client, width, height + 64)
         ButtonHelper.clearButtons(multiplayerScreen)
 
