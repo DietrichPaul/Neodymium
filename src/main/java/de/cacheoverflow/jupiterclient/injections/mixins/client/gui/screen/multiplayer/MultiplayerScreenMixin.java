@@ -46,6 +46,8 @@ public abstract class MultiplayerScreenMixin extends Screen implements IMultipla
 
     @Shadow protected abstract void removeEntry(boolean confirmedAction);
 
+    @Shadow @Final private Screen parent;
+
     protected MultiplayerScreenMixin(Text title) {
         super(title);
     }
@@ -104,6 +106,12 @@ public abstract class MultiplayerScreenMixin extends Screen implements IMultipla
     @Override
     public void doAddEntry(boolean confirmedAction) {
         this.addEntry(confirmedAction);
+    }
+
+    @NotNull
+    @Override
+    public Screen getParentScreen() {
+        return this.parent;
     }
 
     @Override

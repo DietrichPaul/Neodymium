@@ -1,5 +1,6 @@
 package de.cacheoverflow.jupiterclient.injections.interfaces.client.gui.screen.multiplayer
 
+import net.minecraft.client.gui.screen.Screen
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerServerListWidget
 import net.minecraft.client.gui.widget.ButtonWidget
 import net.minecraft.client.network.LanServerQueryManager.LanServerEntryList
@@ -19,6 +20,8 @@ interface IMultiplayerScreenMixin {
     fun doConnect(serverInfo: ServerInfo)
 
     fun refreshScreen()
+
+    fun getParentScreen(): Screen
 
     val entryList: MultiplayerServerListWidget?
 

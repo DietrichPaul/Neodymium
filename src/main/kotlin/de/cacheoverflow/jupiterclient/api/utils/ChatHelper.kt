@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions
 import de.cacheoverflow.jupiterclient.JupiterClient
 import net.minecraft.client.MinecraftClient
 import net.minecraft.text.LiteralText
+import net.minecraft.text.MutableText
 import net.minecraft.text.Text
 import net.minecraft.text.TranslatableText
 import net.minecraft.util.Formatting
@@ -46,7 +47,7 @@ class ChatHelper(client: MinecraftClient) {
     }
 
     companion object {
-        @JvmStatic val PREFIX = LiteralText("")
+        @JvmStatic val PREFIX: MutableText = LiteralText("")
             .append(LiteralText("[").formatted(Formatting.DARK_GRAY))
             .append(LiteralText(JupiterClient::class.java.simpleName).formatted(Formatting.AQUA))
             .append(LiteralText("] ").formatted(Formatting.DARK_GRAY))

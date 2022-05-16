@@ -9,6 +9,7 @@ import de.cacheoverflow.jupiterclient.injections.interfaces.client.gui.screen.mu
 import net.minecraft.client.gui.screen.AddServerScreen
 import net.minecraft.client.gui.screen.ConfirmScreen
 import net.minecraft.client.gui.screen.DirectConnectScreen
+import net.minecraft.client.gui.screen.Screen
 import net.minecraft.client.gui.screen.ScreenTexts
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerServerListWidget.ServerEntry
@@ -25,13 +26,17 @@ import net.minecraft.util.Identifier
 import java.awt.Color
 import java.util.*
 
-class MainMenuScreen : ScreenFacade("narrator.screen.title") {
+class MainMenuScreen(
+    private val prevScreen: Screen? = null
+) : ScreenFacade("narrator.screen.title") {
 
     private val multiplayerScreen: MultiplayerScreen = MultiplayerScreen(this)
     private var deleteButton: ButtonWidget? = null
     private var editButton: ButtonWidget? = null
 
     override fun init() {
+        if (this.prevScreen == null)
+            this.prevScreen?.let { this.setEscapeScreen(it) }
         multiplayerScreen.init(client, width, height + 64)
         ButtonHelper.clearButtons(multiplayerScreen)
 

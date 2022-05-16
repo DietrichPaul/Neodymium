@@ -12,11 +12,13 @@ import de.cacheoverflow.jupiterclient.api.utils.ChatHelper
 import de.cacheoverflow.jupiterclient.impl.commands.DefaultCommandRegistry
 import de.cacheoverflow.jupiterclient.impl.events.DefaultEventBus
 import de.cacheoverflow.jupiterclient.injections.interfaces.client.IMinecraftClientMixin
+import de.cacheoverflow.jupiterclient.injections.interfaces.client.gui.screen.multiplayer.IMultiplayerScreenMixin
 import de.cacheoverflow.jupiterclient.ui.screens.MainMenuScreen
 import net.fabricmc.loader.api.FabricLoader
 import net.fabricmc.loader.api.metadata.ModMetadata
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.screen.TitleScreen
+import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen
 import org.slf4j.Logger
 
 class JupiterClient(
@@ -53,6 +55,8 @@ class JupiterClient(
     fun listenToScreenEvent(event: ScreenEvent) {
         if (event.screen is TitleScreen || (event.screen == null && this.minecraft.world == null))
             event.screen = MainMenuScreen()
+        else if (event.screen is MultiplayerScreen)
+            event.screen = MainMenuScreen(((event.screen as IMultiplayerScreenMixin).getParentScreen()))
     }
 
     @EventTarget
