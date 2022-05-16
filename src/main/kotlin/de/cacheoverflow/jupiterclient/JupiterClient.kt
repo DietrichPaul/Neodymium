@@ -8,6 +8,7 @@ import de.cacheoverflow.jupiterclient.api.events.EventTarget
 import de.cacheoverflow.jupiterclient.api.events.IEventBus
 import de.cacheoverflow.jupiterclient.api.events.all.ChatEvent
 import de.cacheoverflow.jupiterclient.api.events.all.ScreenEvent
+import de.cacheoverflow.jupiterclient.api.utils.ChatHelper
 import de.cacheoverflow.jupiterclient.impl.commands.DefaultCommandRegistry
 import de.cacheoverflow.jupiterclient.impl.events.DefaultEventBus
 import de.cacheoverflow.jupiterclient.injections.interfaces.client.IMinecraftClientMixin
@@ -26,6 +27,7 @@ class JupiterClient(
     val commandRegistry: ICommandRegistry<JupiterClient> = DefaultCommandRegistry()
     val eventBus: IEventBus = DefaultEventBus()
     val logger: Logger = LogUtils.getLogger()
+    val chatHelper: ChatHelper = ChatHelper(this.minecraft)
 
     companion object {
         @JvmStatic fun getInstanceFrom(client: MinecraftClient): JupiterClient {
