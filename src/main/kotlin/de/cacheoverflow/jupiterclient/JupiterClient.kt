@@ -2,9 +2,13 @@ package de.cacheoverflow.jupiterclient
 
 import com.google.common.base.Preconditions
 import com.mojang.logging.LogUtils
+import de.cacheoverflow.jupiterclient.api.commands.ICommandRegistry
+import de.cacheoverflow.jupiterclient.api.commands.implementation.TestCommand
 import de.cacheoverflow.jupiterclient.api.events.EventTarget
 import de.cacheoverflow.jupiterclient.api.events.IEventBus
+import de.cacheoverflow.jupiterclient.api.events.all.ChatEvent
 import de.cacheoverflow.jupiterclient.api.events.all.ScreenEvent
+import de.cacheoverflow.jupiterclient.impl.commands.DefaultCommandRegistry
 import de.cacheoverflow.jupiterclient.impl.events.DefaultEventBus
 import de.cacheoverflow.jupiterclient.injections.interfaces.client.IMinecraftClientMixin
 import de.cacheoverflow.jupiterclient.ui.screens.MainMenuScreen
@@ -19,6 +23,7 @@ class JupiterClient(
 ) {
 
     val metadata: ModMetadata = FabricLoader.getInstance().getModContainer("jupiter-client").orElseThrow().metadata
+    val commandRegistry: ICommandRegistry<JupiterClient> = DefaultCommandRegistry()
     val eventBus: IEventBus = DefaultEventBus()
     val logger: Logger = LogUtils.getLogger()
 
@@ -32,6 +37,7 @@ class JupiterClient(
     fun start() {
         logger.info("Starting {} v{}...", metadata.name, metadata.version)
         this.eventBus.registerListeners(arrayOf(this))
+        this.commandRegistry.register(arrayOf(TestCommand()))
         logger.info("{} is now initialized.", metadata.name)
     }
 
@@ -45,6 +51,14 @@ class JupiterClient(
     fun listenToScreenEvent(event: ScreenEvent) {
         if (event.screen is TitleScreen || (event.screen == null && this.minecraft.world == null))
             event.screen = MainMenuScreen()
+    }
+
+    @EventTarget
+    @Suppress("unused")
+    fun listenToChatEvent(event: ChatEvent) {
+        if (!this.commandRegistry.processCommand(this, event.message))
+            event.setCancelled(true)
+
     }
 
 }
