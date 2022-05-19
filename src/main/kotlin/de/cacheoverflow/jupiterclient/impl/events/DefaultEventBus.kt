@@ -54,6 +54,13 @@ class DefaultEventBus(
         this.eventListener = ArrayList(this.eventListener.sortedWith(compareBy { it.priority() })) // I don't have a better idea ._.
     }
 
+    override fun unregisterListeners(listener: Array<Any>) {
+        val classArray: Array<KClass<out Any>> = listener.map { it::class }.toTypedArray()
+        this.eventListener.removeIf {
+            classArray.contains(it.listener()::class)
+        }
+    }
+
     override fun <T : Any> callEvent(event: T, predicate: Predicate<IEventContainer>): T {
         this.openStream { entry -> entry.eventClass().isInstance(event) && predicate.test(entry) }
             .forEach { entry -> entry.method().invoke(entry.listener(), event) }

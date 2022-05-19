@@ -8,9 +8,11 @@ import de.cacheoverflow.jupiterclient.api.events.EventTarget
 import de.cacheoverflow.jupiterclient.api.events.IEventBus
 import de.cacheoverflow.jupiterclient.api.events.all.ChatEvent
 import de.cacheoverflow.jupiterclient.api.events.all.ScreenEvent
+import de.cacheoverflow.jupiterclient.api.modules.IModuleRegistry
 import de.cacheoverflow.jupiterclient.api.utils.ChatHelper
 import de.cacheoverflow.jupiterclient.impl.commands.DefaultCommandRegistry
 import de.cacheoverflow.jupiterclient.impl.events.DefaultEventBus
+import de.cacheoverflow.jupiterclient.impl.modules.DefaultModuleRegistry
 import de.cacheoverflow.jupiterclient.injections.interfaces.client.IMinecraftClientMixin
 import de.cacheoverflow.jupiterclient.injections.interfaces.client.gui.screen.multiplayer.IMultiplayerScreenMixin
 import de.cacheoverflow.jupiterclient.ui.screens.MainMenuScreen
@@ -27,6 +29,7 @@ class JupiterClient(
 
     val metadata: ModMetadata = FabricLoader.getInstance().getModContainer("jupiter-client").orElseThrow().metadata
     val commandRegistry: ICommandRegistry<JupiterClient> = DefaultCommandRegistry()
+    val moduleRegistry: IModuleRegistry = DefaultModuleRegistry()
     val eventBus: IEventBus = DefaultEventBus()
     val logger: Logger = LogUtils.getLogger()
     val chatHelper: ChatHelper = ChatHelper(this.minecraft)
@@ -42,6 +45,8 @@ class JupiterClient(
         logger.info("Starting {} v{}...", metadata.name, metadata.version)
         this.eventBus.registerListeners(arrayOf(this))
         this.commandRegistry.register(arrayOf(TestCommand()))
+
+        this.moduleRegistry.start()
         logger.info("{} is now initialized.", metadata.name)
     }
 
