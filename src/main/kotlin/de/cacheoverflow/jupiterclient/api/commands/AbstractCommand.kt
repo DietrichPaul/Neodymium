@@ -1,5 +1,9 @@
 package de.cacheoverflow.jupiterclient.api.commands
 
+import com.mojang.brigadier.arguments.ArgumentType
+import com.mojang.brigadier.builder.LiteralArgumentBuilder
+import com.mojang.brigadier.builder.RequiredArgumentBuilder
+
 abstract class AbstractCommand<S: Any>: ICommand<S> {
 
     private val description: String
@@ -10,6 +14,14 @@ abstract class AbstractCommand<S: Any>: ICommand<S> {
             ?: throw IllegalStateException("You can't register a command without the information declaration!")
         this.description = declaration.description
         this.aliases = declaration.aliases
+    }
+
+    protected fun <E> argument(literal: String, type: ArgumentType<E>): RequiredArgumentBuilder<S, E> {
+        return RequiredArgumentBuilder.argument(literal, type)
+    }
+
+    protected fun literal(literal: String): LiteralArgumentBuilder<S> {
+        return LiteralArgumentBuilder.literal(literal)
     }
 
     override fun aliases(): Array<String> {
