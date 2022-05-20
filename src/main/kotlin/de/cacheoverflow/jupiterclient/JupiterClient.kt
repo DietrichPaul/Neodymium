@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions
 import com.mojang.logging.LogUtils
 import de.cacheoverflow.jupiterclient.api.commands.ICommandRegistry
 import de.cacheoverflow.jupiterclient.api.commands.implementation.TestCommand
+import de.cacheoverflow.jupiterclient.api.commands.implementation.ToggleCommand
 import de.cacheoverflow.jupiterclient.api.events.EventTarget
 import de.cacheoverflow.jupiterclient.api.events.IEventBus
 import de.cacheoverflow.jupiterclient.api.events.all.ChatEvent
@@ -29,7 +30,7 @@ class JupiterClient(
 
     val metadata: ModMetadata = FabricLoader.getInstance().getModContainer("jupiter-client").orElseThrow().metadata
     val commandRegistry: ICommandRegistry<JupiterClient> = DefaultCommandRegistry()
-    val moduleRegistry: IModuleRegistry = DefaultModuleRegistry()
+    val moduleRegistry: IModuleRegistry = DefaultModuleRegistry(this)
     val eventBus: IEventBus = DefaultEventBus()
     val logger: Logger = LogUtils.getLogger()
     val chatHelper: ChatHelper = ChatHelper(this.minecraft)
@@ -44,7 +45,7 @@ class JupiterClient(
     fun start() {
         logger.info("Starting {} v{}...", metadata.name, metadata.version)
         this.eventBus.registerListeners(arrayOf(this))
-        this.commandRegistry.register(arrayOf(TestCommand()))
+        this.commandRegistry.register(arrayOf(TestCommand(), ToggleCommand(this.moduleRegistry)))
 
         this.moduleRegistry.start()
         logger.info("{} is now initialized.", metadata.name)
@@ -69,7 +70,6 @@ class JupiterClient(
     fun listenToChatEvent(event: ChatEvent) {
         if (!this.commandRegistry.processCommand(this, event.message))
             event.setCancelled(true)
-
     }
 
 }

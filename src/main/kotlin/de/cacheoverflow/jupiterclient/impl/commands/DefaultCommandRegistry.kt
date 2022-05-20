@@ -39,6 +39,7 @@ class DefaultCommandRegistry(
 
         line.cursor = this.prefix.length
         try {
+            println(line.remaining)
             this.commandDispatcher.execute(line, sender)
         } catch (ex: CommandSyntaxException) {
             sender.chatHelper.sendComponentWithPrefix(LiteralText(ex.message).formatted(Formatting.RED))
