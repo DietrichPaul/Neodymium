@@ -40,6 +40,7 @@ public abstract class MinecraftClientMixin implements IMinecraftClientMixin {
 
     @Shadow @Nullable private ServerInfo currentServerEntry;
     @Shadow @Nullable public Screen currentScreen;
+    @Shadow private int itemUseCooldown;
     @Unique private JupiterClient jupiterClient;
 
     /**
@@ -198,4 +199,13 @@ public abstract class MinecraftClientMixin implements IMinecraftClientMixin {
         return this.jupiterClient;
     }
 
+    @Override
+    public void setItemUseCooldown(int itemUseCooldown) {
+        this.itemUseCooldown = itemUseCooldown;
+    }
+
+    @Override
+    public int getItemUseCooldown() {
+        return this.itemUseCooldown;
+    }
 }

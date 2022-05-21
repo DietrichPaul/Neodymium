@@ -4,7 +4,7 @@ import de.cacheoverflow.jupiterclient.JupiterClient
 import de.cacheoverflow.jupiterclient.api.events.EventTarget
 import de.cacheoverflow.jupiterclient.api.events.all.update.PlayerUpdateEvent
 import de.cacheoverflow.jupiterclient.api.modules.Module
-import de.cacheoverflow.jupiterclient.api.utils.MathUtils
+import de.cacheoverflow.jupiterclient.api.utils.Rotations
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.network.ClientPlayerEntity
 import net.minecraft.entity.Entity
@@ -30,7 +30,7 @@ class TestModule(client: JupiterClient) : Module(client) {
         if (current == null)
             return
 
-        val lol: Array<Float> = MathUtils.getRotations(minecraft.player!!.eyePos!!, current.pos!!)
+        val lol: Array<Float> = Rotations.calc(minecraft.player!!.eyePos!!, current.pos!!).asFloatArray()
 
         minecraft.player!!.yaw = lol[0]
         minecraft.player!!.pitch = lol[1]

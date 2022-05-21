@@ -1,16 +1,17 @@
 package de.cacheoverflow.jupiterclient.api.utils
 
-import net.minecraft.util.math.Vec3d
-import kotlin.math.atan2
-import kotlin.math.hypot
+import net.minecraft.util.math.MathHelper
 
 object MathUtils {
 
-    fun getRotations(eyePosition: Vec3d, targetPosition: Vec3d): Array<Float> {
-        val delta: Vec3d = targetPosition.subtract(eyePosition)
+    fun getAngleDifference(a: Float, b: Float): Float {
+        return (a - b % 360f + 540f) % 360f - 180f
+    }
+
+    fun changeLookDirection(previous: Array<Float>, cursorDeltaX: Double, cursorDeltaY: Double): Array<Float> {
         return arrayOf(
-            Math.toDegrees(atan2(delta.z, delta.x) - Math.PI / 2).toFloat(),
-            -Math.toDegrees(atan2(delta.y, hypot(delta.x, delta.z))).toFloat()
+            (previous[0] + cursorDeltaX * 0.15).toFloat(),
+            MathHelper.clamp((previous[1] + cursorDeltaY * 0.15).toFloat(), -90F, 90F)
         )
     }
 

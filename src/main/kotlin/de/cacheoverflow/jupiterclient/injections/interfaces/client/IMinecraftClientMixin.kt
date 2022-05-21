@@ -14,4 +14,8 @@ interface IMinecraftClientMixin {
      */
     val jupiterClient: JupiterClient
 
+    fun setItemUseCooldown(ticks: Int)
+
+    fun getItemUseCooldown(): Int
+
 }
