@@ -47,11 +47,12 @@ public abstract class ScreenMixin extends DrawableHelper implements IScreenMixin
     public void sendMessage(@NotNull final String message, final boolean toHud) {
         assert this.client != null;
         ChatEvent event = JupiterClient.getInstanceFrom(this.client).getEventBus().callEvent(new ChatEvent(message, toHud));
-        if (event.isCancelled())
-            return;
 
         if (event.getAddToHud())
             this.client.inGameHud.getChatHud().addToMessageHistory(event.getMessage());
+
+        if (event.isCancelled())
+            return;
 
         assert this.client.player != null;
         this.client.player.sendChatMessage(event.getMessage());
