@@ -40,9 +40,9 @@ open class Module(private val client: JupiterClient): StringIdentifiable {
         return this.name
     }
 
-    protected fun onEnable() {}
+    protected open fun onEnable() {}
 
-    protected fun onDisable() {}
+    protected open fun onDisable() {}
 
     @Target(AnnotationTarget.CLASS)
     @Retention(AnnotationRetention.RUNTIME)
