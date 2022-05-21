@@ -7,7 +7,9 @@
     "client.MinecraftClientMixin",
     "client.gui.screen.ScreenMixin",
     "client.gui.screen.multiplayer.MultiplayerScreenMixin",
-    "client.network.ClientPlayerEntityMixin"
+    "client.network.ClientPlayerEntityMixin",
+    "client.render.GameRendererMixin",
+    "entity.LivingEntityMixin"
   ],
   "client": [
   ],

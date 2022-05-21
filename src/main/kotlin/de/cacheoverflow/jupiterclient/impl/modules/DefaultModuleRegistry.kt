@@ -5,6 +5,7 @@ import de.cacheoverflow.jupiterclient.api.modules.IModuleRegistry
 import de.cacheoverflow.jupiterclient.api.modules.Module
 import de.cacheoverflow.jupiterclient.api.modules.implementation.movement.SprintModule
 import de.cacheoverflow.jupiterclient.api.modules.implementation.TestModule
+import de.cacheoverflow.jupiterclient.api.modules.implementation.visual.BrightnessModule
 import de.cacheoverflow.jupiterclient.api.store.IRegistry
 import java.util.function.Function
 import java.util.function.Predicate
@@ -17,7 +18,7 @@ class DefaultModuleRegistry(
 ): IModuleRegistry {
 
     override fun start() {
-        this.register(arrayOf(TestModule(client), SprintModule(client)))
+        this.register(arrayOf(TestModule(client), SprintModule(client), BrightnessModule(client)))
     }
 
     override fun <E> directAction(action: Function<MutableCollection<Module>, E?>): E? {

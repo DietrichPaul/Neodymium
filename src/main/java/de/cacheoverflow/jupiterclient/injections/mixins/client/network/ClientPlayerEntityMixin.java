@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientPlayerEntity.class)
-public class ClientPlayerEntityMixin {
+public abstract class ClientPlayerEntityMixin {
 
     private static final PlayerUpdateEvent PRE_UPDATE_EVENT = new PlayerUpdateEvent(UpdateEvent.EnumType.PRE);
     private static final PlayerUpdateEvent POST_UPDATE_EVENT = new PlayerUpdateEvent(UpdateEvent.EnumType.POST);
