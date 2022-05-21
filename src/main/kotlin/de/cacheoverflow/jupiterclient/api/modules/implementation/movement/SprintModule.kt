@@ -1,4 +1,4 @@
-package de.cacheoverflow.jupiterclient.api.modules.implementation
+package de.cacheoverflow.jupiterclient.api.modules.implementation.movement
 
 import de.cacheoverflow.jupiterclient.JupiterClient
 import de.cacheoverflow.jupiterclient.api.events.EventTarget
