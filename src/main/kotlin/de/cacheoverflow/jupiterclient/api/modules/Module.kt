@@ -4,7 +4,7 @@ import de.cacheoverflow.jupiterclient.JupiterClient
 import net.minecraft.util.StringIdentifiable
 import kotlin.reflect.full.findAnnotation
 
-open class Module(private val client: JupiterClient): StringIdentifiable {
+open class Module(val client: JupiterClient): StringIdentifiable {
 
     val name: String
     val description: String

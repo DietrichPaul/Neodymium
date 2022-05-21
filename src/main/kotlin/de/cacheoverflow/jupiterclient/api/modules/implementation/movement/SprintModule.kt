@@ -7,7 +7,7 @@ import de.cacheoverflow.jupiterclient.api.modules.Module
 import net.minecraft.client.option.KeyBinding
 
 @Module.Declaration("Sprint", "module.sprint.description", Module.EnumCategory.MOVEMENT, listenable = true)
-class SprintModule(private val client: JupiterClient): Module(client) {
+class SprintModule(client: JupiterClient): Module(client) {
 
     @EventTarget
     fun handleUpdate(event: UpdateEvent) {

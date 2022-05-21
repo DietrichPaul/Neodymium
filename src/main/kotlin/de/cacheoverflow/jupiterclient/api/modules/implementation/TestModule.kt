@@ -11,7 +11,7 @@ import net.minecraft.entity.Entity
 import kotlin.math.hypot
 
 @Module.Declaration("Test", "module.test.description", Module.EnumCategory.COMBAT, listenable = true)
-class TestModule(private val client: JupiterClient) : Module(client) {
+class TestModule(client: JupiterClient) : Module(client) {
 
     @EventTarget
     fun handleUpdate(event: PlayerUpdateEvent) {
