@@ -25,7 +25,7 @@ import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen
 import org.slf4j.Logger
 
 class JupiterClient(
-    private val minecraft: MinecraftClient
+    val minecraft: MinecraftClient
 ) {
 
     val metadata: ModMetadata = FabricLoader.getInstance().getModContainer("jupiter-client").orElseThrow().metadata

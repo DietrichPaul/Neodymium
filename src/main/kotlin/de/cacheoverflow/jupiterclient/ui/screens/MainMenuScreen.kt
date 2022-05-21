@@ -6,11 +6,7 @@ import de.cacheoverflow.jupiterclient.api.ui.ScreenFacade
 import de.cacheoverflow.jupiterclient.api.utils.ButtonHelper
 import de.cacheoverflow.jupiterclient.api.utils.ColorHelper
 import de.cacheoverflow.jupiterclient.injections.interfaces.client.gui.screen.multiplayer.IMultiplayerScreenMixin
-import net.minecraft.client.gui.screen.AddServerScreen
-import net.minecraft.client.gui.screen.ConfirmScreen
-import net.minecraft.client.gui.screen.DirectConnectScreen
-import net.minecraft.client.gui.screen.Screen
-import net.minecraft.client.gui.screen.ScreenTexts
+import net.minecraft.client.gui.screen.*
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerServerListWidget.ServerEntry
 import net.minecraft.client.gui.screen.option.OptionsScreen

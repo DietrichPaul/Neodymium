@@ -6,7 +6,8 @@
   "mixins": [
     "client.MinecraftClientMixin",
     "client.gui.screen.ScreenMixin",
-    "client.gui.screen.multiplayer.MultiplayerScreenMixin"
+    "client.gui.screen.multiplayer.MultiplayerScreenMixin",
+    "client.network.ClientPlayerEntityMixin"
   ],
   "client": [
   ],
