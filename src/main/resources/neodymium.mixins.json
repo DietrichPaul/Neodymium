@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "de.cacheoverflow.neodymium.injections.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "client.KeyboardMixin",
+    "client.MinecraftClientMixin",
+    "client.gui.screen.ScreenMixin",
+    "client.gui.screen.multiplayer.MultiplayerScreenMixin",
+    "client.gui.widget.EntryListWidgetMixin",
+    "client.network.ClientPlayerEntityMixin",
+    "client.render.GameRendererMixin",
+    "entity.LivingEntityMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "jupiter-client",
+  "id": "neodymium",
   "version": "${version}",
 
-  "name": "Jupiter Client",
+  "name": "Neodymium",
   "description": "Fabric modification for the sandbox game Minecraft",
   "authors": [
     {
@@ -15,25 +15,26 @@
     }
   ],
   "contact": {
-    "sources": "https://github.com/JupiterClient",
-    "issues": "https://github.com/JupiterClient/issues"
+    "sources": "https://github.com/Neodymium",
+    "issues": "https://github.com/Neodymium/issues"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/jupiterclient/icon.png",
+  "license": "MIT",
+  "icon": "assets/neodymium/icon.png",
 
   "environment": "client",
   "entrypoints": {
   },
   "mixins": [
-    "jupiter.mixins.json"
+    "neodymium.mixins.json"
   ],
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "~1.18.2",
-    "java": ">=17"
+    "java": ">=17",
+    "satin": ">=1.8.0"
   },
   "suggests": {
     "another-mod": "*"
