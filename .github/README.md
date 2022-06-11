@@ -3,7 +3,7 @@ A minecraft modification based on Fabric with Yarn Mappings, developed for the n
 
 ## Building this project
 
-1. Clone this repository with `git clone https://github.com/Cach30verfl0w/JupiterClient.git`
+1. Clone this repository with `git clone https://github.com/Cach30verfl0w/Neodymium.git`
 2. Build the project with `./gradlew build`
 
 ## Setup
