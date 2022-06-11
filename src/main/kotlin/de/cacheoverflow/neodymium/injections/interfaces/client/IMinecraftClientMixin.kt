@@ -6,9 +6,9 @@ import net.minecraft.client.util.Session
 interface IMinecraftClientMixin {
 
     /**
-     * This method returns the instance of the client for the minecraft instance.
+     * This method returns the instance of the mod for the minecraft instance.
      *
-     * @return The instance of the jupiter client, assigned to the minecraft client.
+     * @return The instance of the neodymium mod, assigned to the minecraft client.
      *
      * @author Cach30verfl0w, Cedric H.
      * @since  1.0.0
