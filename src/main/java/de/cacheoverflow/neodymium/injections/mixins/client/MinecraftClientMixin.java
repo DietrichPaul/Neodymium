@@ -198,9 +198,9 @@ public abstract class MinecraftClientMixin implements IMinecraftClientMixin {
     }
 
     /**
-     * This method makes the minecraft client able to return the jupiter client by the minecraft instance.
+     * This method makes the minecraft client able to return the neodymium mod by the minecraft instance.
      *
-     * @return The jupiter client instance in this class.
+     * @return The neodymium instance in this class.
      *
      * @author Cach30verfl0w, Cedric H.
      */
