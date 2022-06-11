@@ -20,4 +20,4 @@ You can find all instructions for the setup on the [Fabric Wiki Page](https://fa
 
 ## License
 
-This project is licensed under the [MIT License](https://github.com/Cach30verfl0w/JupiterClient/blob/main/LICENSE), please respect the license and the developer behind this project.
+This project is licensed under the [MIT License](https://github.com/Cach30verfl0w/Neodymium/blob/main/LICENSE), please respect the license and the developer behind this project.
